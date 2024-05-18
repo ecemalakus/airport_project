@@ -1,317 +1,284 @@
-// To parse this JSON data, do
-//
-//     final airportModel = airportModelFromJson(jsonString);
-
 import 'dart:convert';
 
-AirportModel airportModelFromJson(String str) => AirportModel.fromJson(json.decode(str));
+AirportModel airportModelFromJson(String str) =>
+    AirportModel.fromJson(json.decode(str));
 
 String airportModelToJson(AirportModel data) => json.encode(data.toJson());
 
 class AirportModel {
-    List<Datum>? data;
-    Dictionaries? dictionaries;
-    Meta? meta;
+  String? ident;
+  String? type;
+  String? name;
+  double? latitudeDeg;
+  double? longitudeDeg;
+  String? elevationFt;
+  String? continent;
+  String? isoCountry;
+  String? isoRegion;
+  String? municipality;
+  String? scheduledService;
+  String? gpsCode;
+  String? iataCode;
+  String? localCode;
+  String? homeLink;
+  String? wikipediaLink;
+  String? keywords;
+  String? icaoCode;
+  List<Runway>? runways;
+  List<Frequency>? freqs;
 
-    AirportModel({
-        this.data,
-        this.dictionaries,
-        this.meta,
-    });
+  AirportModel({
+    this.ident,
+    this.type,
+    this.name,
+    this.latitudeDeg,
+    this.longitudeDeg,
+    this.elevationFt,
+    this.continent,
+    this.isoCountry,
+    this.isoRegion,
+    this.municipality,
+    this.scheduledService,
+    this.gpsCode,
+    this.iataCode,
+    this.localCode,
+    this.homeLink,
+    this.wikipediaLink,
+    this.keywords,
+    this.icaoCode,
+    this.runways,
+    this.freqs,
+  });
 
-    factory AirportModel.fromJson(Map<String, dynamic> json) => AirportModel(
-        data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
-        dictionaries: json["dictionaries"] == null ? null : Dictionaries.fromJson(json["dictionaries"]),
-        meta: json["meta"] == null ? null : Meta.fromJson(json["meta"]),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
-        "dictionaries": dictionaries?.toJson(),
-        "meta": meta?.toJson(),
-    };
-}
-
-class Datum {
-    String? type;
-    String? origin;
-    String? destination;
-    DateTime? departureDate;
-    DateTime? returnDate;
-    Price? price;
-    DatumLinks? links;
-
-    Datum({
-        this.type,
-        this.origin,
-        this.destination,
-        this.departureDate,
-        this.returnDate,
-        this.price,
-        this.links,
-    });
-
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory AirportModel.fromJson(Map<String, dynamic> json) => AirportModel(
+        ident: json["ident"],
         type: json["type"],
-        origin: json["origin"],
-        destination: json["destination"],
-        departureDate: json["departureDate"] == null ? null : DateTime.parse(json["departureDate"]),
-        returnDate: json["returnDate"] == null ? null : DateTime.parse(json["returnDate"]),
-        price: json["price"] == null ? null : Price.fromJson(json["price"]),
-        links: json["links"] == null ? null : DatumLinks.fromJson(json["links"]),
-    );
+        name: json["name"],
+        latitudeDeg: _toDouble(json["latitude_deg"]),
+        longitudeDeg: _toDouble(json["longitude_deg"]),
+        elevationFt: json["elevation_ft"],
+        continent: json["continent"],
+        isoCountry: json["iso_country"],
+        isoRegion: json["iso_region"],
+        municipality: json["municipality"],
+        scheduledService: json["scheduled_service"],
+        gpsCode: json["gps_code"],
+        iataCode: json["iata_code"],
+        localCode: json["local_code"],
+        homeLink: json["home_link"],
+        wikipediaLink: json["wikipedia_link"],
+        keywords: json["keywords"],
+        icaoCode: json["icao_code"],
+        runways: json["runways"] == null
+            ? []
+            : List<Runway>.from(
+                json["runways"]!.map((x) => Runway.fromJson(x))),
+        freqs: json["freqs"] == null
+            ? []
+            : List<Frequency>.from(
+                json["freqs"]!.map((x) => Frequency.fromJson(x))),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
+        "ident": ident,
         "type": type,
-        "origin": origin,
-        "destination": destination,
-        "departureDate": "${departureDate!.year.toString().padLeft(4, '0')}-${departureDate!.month.toString().padLeft(2, '0')}-${departureDate!.day.toString().padLeft(2, '0')}",
-        "returnDate": "${returnDate!.year.toString().padLeft(4, '0')}-${returnDate!.month.toString().padLeft(2, '0')}-${returnDate!.day.toString().padLeft(2, '0')}",
-        "price": price?.toJson(),
-        "links": links?.toJson(),
-    };
+        "name": name,
+        "latitude_deg": latitudeDeg,
+        "longitude_deg": longitudeDeg,
+        "elevation_ft": elevationFt,
+        "continent": continent,
+        "iso_country": isoCountry,
+        "iso_region": isoRegion,
+        "municipality": municipality,
+        "scheduled_service": scheduledService,
+        "gps_code": gpsCode,
+        "iata_code": iataCode,
+        "local_code": localCode,
+        "home_link": homeLink,
+        "wikipedia_link": wikipediaLink,
+        "keywords": keywords,
+        "icao_code": icaoCode,
+        "runways": runways == null
+            ? []
+            : List<dynamic>.from(runways!.map((x) => x.toJson())),
+        "freqs": freqs == null
+            ? []
+            : List<dynamic>.from(freqs!.map((x) => x.toJson())),
+      };
+
+  static double? _toDouble(dynamic value) {
+    if (value is String) {
+      return double.tryParse(value);
+    } else if (value is num) {
+      return value.toDouble();
+    } else {
+      return null;
+    }
+  }
 }
 
-class DatumLinks {
-    String? flightDates;
-    String? flightOffers;
+class Runway {
+  String? id;
+  String? airportRef;
+  String? airportIdent;
+  String? lengthFt;
+  String? widthFt;
+  String? surface;
+  String? lighted;
+  String? closed;
+  String? leIdent;
+  double? leLatitudeDeg;
+  double? leLongitudeDeg;
+  String? leElevationFt;
+  String? leHeadingDegT;
+  String? leDisplacedThresholdFt;
+  String? heIdent;
+  double? heLatitudeDeg;
+  double? heLongitudeDeg;
+  String? heElevationFt;
+  String? heHeadingDegT;
+  String? heDisplacedThresholdFt;
+  Ils? leIls;
+  Ils? heIls;
 
-    DatumLinks({
-        this.flightDates,
-        this.flightOffers,
-    });
+  Runway({
+    this.id,
+    this.airportRef,
+    this.airportIdent,
+    this.lengthFt,
+    this.widthFt,
+    this.surface,
+    this.lighted,
+    this.closed,
+    this.leIdent,
+    this.leLatitudeDeg,
+    this.leLongitudeDeg,
+    this.leElevationFt,
+    this.leHeadingDegT,
+    this.leDisplacedThresholdFt,
+    this.heIdent,
+    this.heLatitudeDeg,
+    this.heLongitudeDeg,
+    this.heElevationFt,
+    this.heHeadingDegT,
+    this.heDisplacedThresholdFt,
+    this.leIls,
+    this.heIls,
+  });
 
-    factory DatumLinks.fromJson(Map<String, dynamic> json) => DatumLinks(
-        flightDates: json["flightDates"],
-        flightOffers: json["flightOffers"],
-    );
+  factory Runway.fromJson(Map<String, dynamic> json) => Runway(
+        id: json["id"],
+        airportRef: json["airport_ref"],
+        airportIdent: json["airport_ident"],
+        lengthFt: json["length_ft"],
+        widthFt: json["width_ft"],
+        surface: json["surface"],
+        lighted: json["lighted"],
+        closed: json["closed"],
+        leIdent: json["le_ident"],
+        leLatitudeDeg: _toDouble(json["le_latitude_deg"]),
+        leLongitudeDeg: _toDouble(json["le_longitude_deg"]),
+        leElevationFt: json["le_elevation_ft"],
+        leHeadingDegT: json["le_heading_degT"],
+        leDisplacedThresholdFt: json["le_displaced_threshold_ft"],
+        heIdent: json["he_ident"],
+        heLatitudeDeg: _toDouble(json["he_latitude_deg"]),
+        heLongitudeDeg: _toDouble(json["he_longitude_deg"]),
+        heElevationFt: json["he_elevation_ft"],
+        heHeadingDegT: json["he_heading_degT"],
+        heDisplacedThresholdFt: json["he_displaced_threshold_ft"],
+        leIls: json["le_ils"] == null ? null : Ils.fromJson(json["le_ils"]),
+        heIls: json["he_ils"] == null ? null : Ils.fromJson(json["he_ils"]),
+      );
 
-    Map<String, dynamic> toJson() => {
-        "flightDates": flightDates,
-        "flightOffers": flightOffers,
-    };
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "airport_ref": airportRef,
+        "airport_ident": airportIdent,
+        "length_ft": lengthFt,
+        "width_ft": widthFt,
+        "surface": surface,
+        "lighted": lighted,
+        "closed": closed,
+        "le_ident": leIdent,
+        "le_latitude_deg": leLatitudeDeg,
+        "le_longitude_deg": leLongitudeDeg,
+        "le_elevation_ft": leElevationFt,
+        "le_heading_degT": leHeadingDegT,
+        "le_displaced_threshold_ft": leDisplacedThresholdFt,
+        "he_ident": heIdent,
+        "he_latitude_deg": heLatitudeDeg,
+        "he_longitude_deg": heLongitudeDeg,
+        "he_elevation_ft": heElevationFt,
+        "he_heading_degT": heHeadingDegT,
+        "he_displaced_threshold_ft": heDisplacedThresholdFt,
+        "le_ils": leIls?.toJson(),
+        "he_ils": heIls?.toJson(),
+      };
 }
 
-class Price {
-    String? total;
+class Ils {
+  double? freq;
+  int? course;
 
-    Price({
-        this.total,
-    });
+  Ils({
+    this.freq,
+    this.course,
+  });
 
-    factory Price.fromJson(Map<String, dynamic> json) => Price(
-        total: json["total"],
-    );
+  factory Ils.fromJson(Map<String, dynamic> json) => Ils(
+        freq: _toDouble(json["freq"]),
+        course: json["course"],
+      );
 
-    Map<String, dynamic> toJson() => {
-        "total": total,
-    };
+  Map<String, dynamic> toJson() => {
+        "freq": freq,
+        "course": course,
+      };
 }
 
-class Dictionaries {
-    Currencies? currencies;
-    Locations? locations;
+class Frequency {
+  String? id;
+  String? airportRef;
+  String? airportIdent;
+  String? type;
+  String? description;
+  String? frequencyMhz;
 
-    Dictionaries({
-        this.currencies,
-        this.locations,
-    });
+  Frequency({
+    this.id,
+    this.airportRef,
+    this.airportIdent,
+    this.type,
+    this.description,
+    this.frequencyMhz,
+  });
 
-    factory Dictionaries.fromJson(Map<String, dynamic> json) => Dictionaries(
-        currencies: json["currencies"] == null ? null : Currencies.fromJson(json["currencies"]),
-        locations: json["locations"] == null ? null : Locations.fromJson(json["locations"]),
-    );
+  factory Frequency.fromJson(Map<String, dynamic> json) => Frequency(
+        id: json["id"],
+        airportRef: json["airport_ref"],
+        airportIdent: json["airport_ident"],
+        type: json["type"],
+        description: json["description"],
+        frequencyMhz: json["frequency_mhz"],
+      );
 
-    Map<String, dynamic> toJson() => {
-        "currencies": currencies?.toJson(),
-        "locations": locations?.toJson(),
-    };
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "airport_ref": airportRef,
+        "airport_ident": airportIdent,
+        "type": type,
+        "description": description,
+        "frequency_mhz": frequencyMhz,
+      };
 }
 
-class Currencies {
-    String? eur;
-
-    Currencies({
-        this.eur,
-    });
-
-    factory Currencies.fromJson(Map<String, dynamic> json) => Currencies(
-        eur: json["EUR"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "EUR": eur,
-    };
-}
-
-class Locations {
-    Ath? ewr;
-    Ath? mia;
-    Ath? cdg;
-    Ath? saw;
-    Ath? tun;
-    Ath? bcn;
-    Ath? dxb;
-    Ath? opo;
-    Ath? lin;
-    Ath? mad;
-    Ath? yul;
-    Ath? fco;
-    Ath? ath;
-    Ath? ory;
-    Ath? lis;
-    Ath? rak;
-    Ath? sfo;
-
-    Locations({
-        this.ewr,
-        this.mia,
-        this.cdg,
-        this.saw,
-        this.tun,
-        this.bcn,
-        this.dxb,
-        this.opo,
-        this.lin,
-        this.mad,
-        this.yul,
-        this.fco,
-        this.ath,
-        this.ory,
-        this.lis,
-        this.rak,
-        this.sfo,
-    });
-
-    factory Locations.fromJson(Map<String, dynamic> json) => Locations(
-        ewr: json["EWR"] == null ? null : Ath.fromJson(json["EWR"]),
-        mia: json["MIA"] == null ? null : Ath.fromJson(json["MIA"]),
-        cdg: json["CDG"] == null ? null : Ath.fromJson(json["CDG"]),
-        saw: json["SAW"] == null ? null : Ath.fromJson(json["SAW"]),
-        tun: json["TUN"] == null ? null : Ath.fromJson(json["TUN"]),
-        bcn: json["BCN"] == null ? null : Ath.fromJson(json["BCN"]),
-        dxb: json["DXB"] == null ? null : Ath.fromJson(json["DXB"]),
-        opo: json["OPO"] == null ? null : Ath.fromJson(json["OPO"]),
-        lin: json["LIN"] == null ? null : Ath.fromJson(json["LIN"]),
-        mad: json["MAD"] == null ? null : Ath.fromJson(json["MAD"]),
-        yul: json["YUL"] == null ? null : Ath.fromJson(json["YUL"]),
-        fco: json["FCO"] == null ? null : Ath.fromJson(json["FCO"]),
-        ath: json["ATH"] == null ? null : Ath.fromJson(json["ATH"]),
-        ory: json["ORY"] == null ? null : Ath.fromJson(json["ORY"]),
-        lis: json["LIS"] == null ? null : Ath.fromJson(json["LIS"]),
-        rak: json["RAK"] == null ? null : Ath.fromJson(json["RAK"]),
-        sfo: json["SFO"] == null ? null : Ath.fromJson(json["SFO"]),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "EWR": ewr?.toJson(),
-        "MIA": mia?.toJson(),
-        "CDG": cdg?.toJson(),
-        "SAW": saw?.toJson(),
-        "TUN": tun?.toJson(),
-        "BCN": bcn?.toJson(),
-        "DXB": dxb?.toJson(),
-        "OPO": opo?.toJson(),
-        "LIN": lin?.toJson(),
-        "MAD": mad?.toJson(),
-        "YUL": yul?.toJson(),
-        "FCO": fco?.toJson(),
-        "ATH": ath?.toJson(),
-        "ORY": ory?.toJson(),
-        "LIS": lis?.toJson(),
-        "RAK": rak?.toJson(),
-        "SFO": sfo?.toJson(),
-    };
-}
-
-class Ath {
-    String? subType;
-    String? detailedName;
-
-    Ath({
-        this.subType,
-        this.detailedName,
-    });
-
-    factory Ath.fromJson(Map<String, dynamic> json) => Ath(
-        subType: json["subType"],
-        detailedName: json["detailedName"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "subType": subType,
-        "detailedName": detailedName,
-    };
-}
-
-class Meta {
-    String? currency;
-    MetaLinks? links;
-    Defaults? defaults;
-
-    Meta({
-        this.currency,
-        this.links,
-        this.defaults,
-    });
-
-    factory Meta.fromJson(Map<String, dynamic> json) => Meta(
-        currency: json["currency"],
-        links: json["links"] == null ? null : MetaLinks.fromJson(json["links"]),
-        defaults: json["defaults"] == null ? null : Defaults.fromJson(json["defaults"]),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "currency": currency,
-        "links": links?.toJson(),
-        "defaults": defaults?.toJson(),
-    };
-}
-
-class Defaults {
-    String? departureDate;
-    bool? oneWay;
-    String? duration;
-    bool? nonStop;
-    String? viewBy;
-
-    Defaults({
-        this.departureDate,
-        this.oneWay,
-        this.duration,
-        this.nonStop,
-        this.viewBy,
-    });
-
-    factory Defaults.fromJson(Map<String, dynamic> json) => Defaults(
-        departureDate: json["departureDate"],
-        oneWay: json["oneWay"],
-        duration: json["duration"],
-        nonStop: json["nonStop"],
-        viewBy: json["viewBy"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "departureDate": departureDate,
-        "oneWay": oneWay,
-        "duration": duration,
-        "nonStop": nonStop,
-        "viewBy": viewBy,
-    };
-}
-
-class MetaLinks {
-    String? self;
-
-    MetaLinks({
-        this.self,
-    });
-
-    factory MetaLinks.fromJson(Map<String, dynamic> json) => MetaLinks(
-        self: json["self"],
-    );
-
-    Map<String, dynamic> toJson() => {
-        "self": self,
-    };
+double? _toDouble(dynamic value) {
+  if (value is String) {
+    return double.tryParse(value);
+  } else if (value is num) {
+    return value.toDouble();
+  } else {
+    return null;
+  }
 }

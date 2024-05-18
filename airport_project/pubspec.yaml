@@ -2,7 +2,7 @@ name: airport_project
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.6 <4.0.0'
+  sdk: ">=3.2.6 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -39,26 +39,26 @@ dependencies:
   get:
   intl:
   firebase_core:
-  firebase_auth: 
+  firebase_auth:
   get_storage:
   flutter_screenutil:
   cloud_firestore:
-  translator: 
+  translator:
   persistent_bottom_nav_bar_v2:
   dio:
-  cached_network_image: 
+  cached_network_image:
   webview_flutter:
-  ticket_widget:  
-  carousel_slider: 
+  ticket_widget:
+  carousel_slider:
   smooth_page_indicator:
-  animations: 
-  google_maps_flutter: 
-  url_launcher: 
+  animations:
+  google_maps_flutter:
+  url_launcher:
   credit_card_form:
-  flutter_credit_card: 
+  flutter_credit_card:
   pinch_zoom:
   google_generative_ai:
-  flutter_markdown: 
+  flutter_markdown:
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -75,7 +75,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

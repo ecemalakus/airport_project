@@ -1,120 +1,83 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-
+import 'package:intl/intl.dart';
 import '../ui/pages/flight_page/model/flight_model.dart';
 
 class FlightController extends GetxController {
-  AirportModel? flightInfo;
-  Future<void> getAirportInfo() async {
+  var flightInfoList = <FlightInfo>[].obs;
+  var isLoading = true.obs;
+
+  Future<void> getFlightInfo() async {
     var dio = Dio();
-    dio.options.headers['Authorization'] =
-        'Bearer vITj8A1b49GQstwgCXSXMXGJsdAJ';
+    var apiKey = 'b9e4ef0f3ae5f95e27590359713e0336';
+    var url =
+        'http://api.aviationstack.com/v1/flights?access_key=$apiKey&dep_iata=ESB';
+
     try {
-      var response = await dio.get(
-          'https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=PAR&maxPrice=500');
-      flightInfo = AirportModel.fromJson(response.data);
-      update();
+      isLoading.value = true;
+      var response = await dio.get(url);
+      print('API Response: ${response.data}');
+      var flights = response.data['data'] as List;
+      flightInfoList.value =
+          flights.map((flight) => FlightInfo.fromJson(flight)).toList();
     } catch (error) {
-      print('İstek sırasında bir hata oluştu: $error');
+      print('Error occurred: $error');
+    } finally {
+      isLoading.value = false;
     }
   }
 
   @override
   void onInit() {
-    getAirportInfo();
+    getFlightInfo();
     super.onInit();
   }
+}
 
-  /* List<FlightInfo> flightInfos = [
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'PAR',
-      status: 'Open',
-      gateNumber: 'A1',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'LON',
-      status: 'Closed',
-      gateNumber: 'B2',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'NYC',
-      status: 'Opening',
-      gateNumber: 'C3',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'IST',
-      status: 'Open',
-      gateNumber: 'D4',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'BER',
-      status: 'Opening',
-      gateNumber: 'E5',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'MAD',
-      status: 'Closed',
-      gateNumber: 'F6',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'DXB',
-      status: 'Open',
-      gateNumber: 'G7',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'SYD',
-      status: 'Closed',
-      gateNumber: 'H8',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'AMS',
-      status: 'Son',
-      gateNumber: 'I9',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'ROM',
-      status: 'Open',
-      gateNumber: 'J10',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'MUC',
-      status: 'Closed',
-      gateNumber: 'K11',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'CDG',
-      status: 'Open',
-      gateNumber: 'L12',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'BCN',
-      status: 'Opening',
-      gateNumber: 'M13',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'HKG',
-      status: 'Open',
-      gateNumber: 'N14',
-    ),
-    FlightInfo(
-      departureAirport: 'ANK',
-      arrivalAirport: 'SIN',
-      status: 'Closed',
-      gateNumber: 'O15',
-    ),
-  ]; */
+class FlightInfo {
+  String? time;
+  String? date;
+  String? iata;
+  String? origin;
+  String? flightNumber;
+  String? airline;
+  String? status;
+
+  FlightInfo({
+    this.time,
+    this.date,
+    this.iata,
+    this.origin,
+    this.flightNumber,
+    this.airline,
+    this.status,
+  });
+
+  factory FlightInfo.fromJson(Map<String, dynamic> json) {
+    var departure = json['departure'];
+    var flight = json['flight'];
+    var airline = json['airline'];
+
+    return FlightInfo(
+      time: _formatTime(departure['estimated'] ?? departure['scheduled']),
+      date: _formatDate(departure['scheduled']),
+      iata: departure['iata'],
+      origin: departure['airport'],
+      flightNumber: flight['iata'],
+      airline: airline['name'],
+      status: json['flight_status'],
+    );
+  }
+
+  static String _formatTime(String? time) {
+    if (time == null) return '';
+    var dateTime = DateTime.parse(time);
+    return DateFormat('HH:mm').format(dateTime);
+  }
+
+  static String _formatDate(String? date) {
+    if (date == null) return '';
+    var dateTime = DateTime.parse(date);
+    return DateFormat('dd MMM').format(dateTime);
+  }
 }
