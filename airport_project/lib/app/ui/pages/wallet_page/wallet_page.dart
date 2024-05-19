@@ -21,63 +21,88 @@ class _WalletPageState extends State<WalletPage> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<WalletController>(
-        init: WalletController(),
-        builder: (c) {
-          return Scaffold(
+      init: WalletController(),
+      builder: (c) {
+        return Scaffold(
+          backgroundColor: ColorManager.instance.blue,
+          appBar: AppBar(
             backgroundColor: ColorManager.instance.blue,
-            appBar: AppBar(
-              backgroundColor: ColorManager.instance.blue,
-            ),
-            body: Column(
-              children: [
-                Expanded(
-                  flex: 4,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: Utility.dynamicWidthPixel(36)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "CÜZDANIM",
-                          style: TextStyle(fontFamily: "Medium", fontSize: Utility.dynamicTextSize(37)),
-                        ),
-                        SizedBox(
-                          height: Utility.dynamicWidthPixel(24),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              "Toplam Bakiye: ",
-                              style: TextStyle(fontFamily: "Medium", fontSize: Utility.dynamicTextSize(19)),
-                            ),
-                            Text(
-                              "${c.totalLimitString} TL",
-                              style: TextStyle(fontFamily: "Medium", fontSize: Utility.dynamicTextSize(19)),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: Utility.dynamicWidthPixel(8),
-                        ),
-                        Button(
-                          color: ColorManager.instance.black,
-                          onTap: () {
-                            pushNewScreen(context, screen: const AddNewCardPage(), withNavBar: true);
-                          },
-                          title: "Yeni Kart Ekle",
-                          textColor: ColorManager.instance.white,
-                        )
-                      ],
-                    ),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () {
+                  c.fetchCards();
+                },
+              ),
+            ],
+          ),
+          body: Column(
+            children: [
+              Expanded(
+                flex: 4,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: Utility.dynamicWidthPixel(36)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "CÜZDANIM",
+                        style: TextStyle(
+                            fontFamily: "Medium",
+                            fontSize: Utility.dynamicTextSize(37)),
+                      ),
+                      SizedBox(
+                        height: Utility.dynamicWidthPixel(24),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Toplam Bakiye: ",
+                            style: TextStyle(
+                                fontFamily: "Medium",
+                                fontSize: Utility.dynamicTextSize(19)),
+                          ),
+                          Obx(() => Text(
+                                "${c.totalLimitString} TL",
+                                style: TextStyle(
+                                    fontFamily: "Medium",
+                                    fontSize: Utility.dynamicTextSize(19)),
+                              )),
+                        ],
+                      ),
+                      SizedBox(
+                        height: Utility.dynamicWidthPixel(8),
+                      ),
+                      Button(
+                        color: ColorManager.instance.black,
+                        onTap: () {
+                          pushNewScreen(context,
+                              screen: const AddNewCardPage(), withNavBar: true);
+                        },
+                        title: "Yeni Kart Ekle",
+                        textColor: ColorManager.instance.white,
+                      )
+                    ],
                   ),
                 ),
-                Flexible(
-                  flex: 8,
-                  child: StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.collection('mycards').doc(FirebaseAuth.instance.currentUser!.uid).collection('cards').snapshots(),
+              ),
+              Flexible(
+                flex: 8,
+                child: Obx(() {
+                  if (c.isLoading.value) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  return StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('mycards')
+                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                        .collection('cards')
+                        .snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const CircularProgressIndicator();
@@ -87,49 +112,71 @@ class _WalletPageState extends State<WalletPage> {
                         return Center(
                           child: Text(
                             'Kayıtlı Kartınız Bulunmamaktadır',
-                            style: TextStyle(fontFamily: "Medium", fontSize: Utility.dynamicTextSize(17)),
+                            style: TextStyle(
+                                fontFamily: "Medium",
+                                fontSize: Utility.dynamicTextSize(17)),
                           ),
                         );
                       }
 
-                      List<QueryDocumentSnapshot<Object?>> cardDocuments = snapshot.data!.docs;
+                      List<QueryDocumentSnapshot<Object?>> cardDocuments =
+                          snapshot.data!.docs;
 
                       return ListView.builder(
                         itemCount: cardDocuments.length,
                         itemBuilder: (context, index) {
-                          var card = cardDocuments[index].data() as Map<String, dynamic>;
-                          double totalLimit = 0; // Toplam limiti saklamak için bir değişken
-
-                          // Her bir kartın limitini topla
-                          for (var card in cardDocuments) {
-                            var cardData = card.data() as Map<String, dynamic>;
-                            var limit = cardData['limit'] ?? 0;
-                            totalLimit += limit;
-                          }
-
-                          // Toplam limiti string ifadeye dönüştür
-                          c.totalLimitString = totalLimit.toStringAsFixed(2); // İki ondalık basamaklı olarak formatla
-                          return CreditCardWidget(
-                            cardNumber: card["cardNumber"],
-                            expiryDate: "${card["expirationMonth"]}" "${card["expirationYear"]}",
-                            cardHolderName: card["cardHolderName"],
-                            cvvCode: card["cvc"],
-                            showBackView: false,
-                            obscureCardNumber: true,
-                            obscureCardCvv: true,
-                            isHolderNameVisible: true,
-                            cardBgColor: ColorManager.instance.blueDark,
-                            isSwipeGestureEnabled: true,
-                            onCreditCardWidgetChange: (CreditCardBrand creditCardBrand) {},
+                          var cardData = cardDocuments[index].data()
+                              as Map<String, dynamic>;
+                          var cardId = cardDocuments[index].id;
+                          return Column(
+                            children: [
+                              CreditCardWidget(
+                                cardNumber: cardData["cardNumber"],
+                                expiryDate:
+                                    "${cardData["expirationMonth"]}/${cardData["expirationYear"]}",
+                                cardHolderName: cardData["cardHolderName"],
+                                cvvCode: cardData["cvc"],
+                                showBackView: false,
+                                obscureCardNumber: true,
+                                obscureCardCvv: true,
+                                isHolderNameVisible: true,
+                                cardBgColor: ColorManager.instance.blueDark,
+                                isSwipeGestureEnabled: true,
+                                onCreditCardWidgetChange:
+                                    (CreditCardBrand creditCardBrand) {},
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: Utility.dynamicWidthPixel(8)),
+                                child: Button(
+                                  color: ColorManager.instance.black,
+                                  onTap: () async {
+                                    await FirebaseFirestore.instance
+                                        .collection('mycards')
+                                        .doc(FirebaseAuth
+                                            .instance.currentUser!.uid)
+                                        .collection('cards')
+                                        .doc(cardId)
+                                        .delete();
+                                    Get.snackbar("Başarılı",
+                                        "Kartınız Başarıyla Silindi");
+                                  },
+                                  title: "Kartı Sil",
+                                  textColor: ColorManager.instance.white,
+                                ),
+                              ),
+                            ],
                           );
                         },
                       );
                     },
-                  ),
-                ),
-              ],
-            ),
-          );
-        });
+                  );
+                }),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

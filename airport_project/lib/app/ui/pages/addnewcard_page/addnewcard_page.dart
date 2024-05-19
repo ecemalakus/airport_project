@@ -26,7 +26,9 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
               backgroundColor: ColorManager.instance.blue,
               title: Text(
                 'Yeni Kart Ekle',
-                style: TextStyle(fontSize: Utility.dynamicTextSize(18), fontFamily: "Medium"),
+                style: TextStyle(
+                    fontSize: Utility.dynamicTextSize(18),
+                    fontFamily: "Medium"),
               ),
             ),
             body: Padding(
@@ -42,7 +44,8 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
                         print(result.cardHolderName);
                         c.cardHolderNameController.text = result.cardHolderName;
                         print(result.expirationMonth);
-                        c.expirationMonthController.text = result.expirationMonth;
+                        c.expirationMonthController.text =
+                            result.expirationMonth;
                         print(result.expirationYear);
                         c.expirationYearController.text = result.expirationYear;
                         print(result.cvc);
@@ -50,7 +53,8 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
                       },
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: Utility.dynamicWidthPixel(12)),
+                      padding:
+                          EdgeInsets.only(top: Utility.dynamicWidthPixel(12)),
                       child: Button(
                         color: ColorManager.instance.black,
                         onTap: () {
@@ -62,10 +66,12 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
                             cvc: c.cvcController.text,
                             limit: 100.00,
                           );
-                          AirportShoppingStoresController walletController = Get.put(AirportShoppingStoresController());
+                          AirportShoppingStoresController walletController =
+                              Get.put(AirportShoppingStoresController());
                           walletController.calculateTotalPrice();
                           Get.closeAllSnackbars();
-                          Get.snackbar("Başarılı", "Kartınız Başarıyla Eklendi");
+                          Get.snackbar(
+                              "Başarılı", "Kartınız Başarıyla Eklendi");
                           Navigator.pop(context);
                         },
                         title: "Kart Ekle",
