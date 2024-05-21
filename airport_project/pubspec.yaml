@@ -56,7 +56,7 @@ dependencies:
   url_launcher:
   credit_card_form:
   flutter_credit_card:
-  pinch_zoom:
+  pinch_zoom: ^0.1.0
   google_generative_ai:
   flutter_markdown:
 dev_dependencies:

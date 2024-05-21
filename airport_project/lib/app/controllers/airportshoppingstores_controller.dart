@@ -18,20 +18,52 @@ class AirportShoppingStoresController extends GetxController {
             id: 1,
             name: 'Basic T-shirt',
             price: 19.99,
-            image:
-                "https://lp2.hm.com/hmgoepprod?set=source%5B/16/90/1690ecd75377a91fe270a8de3c1785702078e881.jpg%5D,origin%5Bdam%5D,category%5B%5D,type%5BDESCRIPTIVESTILLLIFE%5D,res%5Bm%5D,hmver%5B2%5D&call=url%5Bfile:/product/style%5D"),
+            image: "https://example.com/image1.jpg"),
         AirportProduct(
             id: 2,
             name: 'Slim Fit Jeans',
             price: 39.99,
-            image:
-                "https://static.zara.net/assets/public/03c9/6341/197941ad9cff/9b5a25822622/1689235453177/1689235453177.jpg?ts=1701867134395&w=824"),
+            image: "https://example.com/image2.jpg"),
         AirportProduct(
             id: 3,
             name: 'Hooded Sweatshirt',
             price: 29.99,
-            image:
-                "https://static.zara.net/assets/public/d113/f5ef/e19b43e48e76/69231aa0e3b7/05584408800-e1/05584408800-e1.jpg?ts=1701085161816&w=1920"),
+            image: "https://example.com/image3.jpg"),
+        AirportProduct(
+            id: 4,
+            name: 'Sunglasses',
+            price: 99.99,
+            image: "https://example.com/image4.jpg"),
+        AirportProduct(
+            id: 5,
+            name: 'Perfume',
+            price: 59.99,
+            image: "https://example.com/image5.jpg"),
+        AirportProduct(
+            id: 6,
+            name: 'Watch',
+            price: 199.99,
+            image: "https://example.com/image6.jpg"),
+        AirportProduct(
+            id: 7,
+            name: 'Handbag',
+            price: 149.99,
+            image: "https://example.com/image7.jpg"),
+        AirportProduct(
+            id: 8,
+            name: 'Necklace',
+            price: 49.99,
+            image: "https://example.com/image8.jpg"),
+        AirportProduct(
+            id: 9,
+            name: 'Chocolate Box',
+            price: 19.99,
+            image: "https://example.com/image9.jpg"),
+        AirportProduct(
+            id: 10,
+            name: 'Liquor Bottle',
+            price: 89.99,
+            image: "https://example.com/image10.jpg"),
       ],
     ),
     AirportBrand(
@@ -40,48 +72,280 @@ class AirportShoppingStoresController extends GetxController {
           'https://brandemia.org/contenido/subidas/2019/02/zara-nuevo-logo-960x640.jpg',
       products: [
         AirportProduct(
-          id: 4,
-          name: 'Regular Jeans',
-          price: 49.99,
-          image:
-              "https://static.zara.net/assets/public/97b2/31bc/422c4ce6a0be/9b16415aaa72/1690381062337/1690381062337.jpg?ts=1702071891598&w=824",
-        ),
+            id: 11,
+            name: 'Regular Jeans',
+            price: 49.99,
+            image: "https://example.com/image11.jpg"),
         AirportProduct(
-            id: 5,
+            id: 12,
             name: 'Trençkot',
             price: 79.99,
-            image:
-                "https://static.zara.net/assets/public/6584/d93f/89884a0581f4/7a9e85dc24f7/03811040450-e1/03811040450-e1.jpg?ts=1706702332993&w=1920"),
+            image: "https://example.com/image12.jpg"),
         AirportProduct(
-            id: 6,
+            id: 13,
             name: 'Deri Bot',
             price: 89.99,
-            image:
-                "https://static.zara.net/assets/public/9147/0ee8/ac834c388e26/723edda74d88/12030320800-e2/12030320800-e2.jpg?ts=1701174790622&w=1920"),
+            image: "https://example.com/image13.jpg"),
+        AirportProduct(
+            id: 14,
+            name: 'Blazer Ceket',
+            price: 99.99,
+            image: "https://example.com/image14.jpg"),
+        AirportProduct(
+            id: 15,
+            name: 'Gömlek',
+            price: 29.99,
+            image: "https://example.com/image15.jpg"),
+        AirportProduct(
+            id: 16,
+            name: 'Elbise',
+            price: 69.99,
+            image: "https://example.com/image16.jpg"),
+        AirportProduct(
+            id: 17,
+            name: 'Çanta',
+            price: 59.99,
+            image: "https://example.com/image17.jpg"),
+        AirportProduct(
+            id: 18,
+            name: 'Kolye',
+            price: 19.99,
+            image: "https://example.com/image18.jpg"),
+        AirportProduct(
+            id: 19,
+            name: 'Saat',
+            price: 129.99,
+            image: "https://example.com/image19.jpg"),
+        AirportProduct(
+            id: 20,
+            name: 'Ayakkabı',
+            price: 79.99,
+            image: "https://example.com/image20.jpg"),
       ],
     ),
     AirportBrand(
-      name: 'Watsons',
-      image: 'https://logowik.com/content/uploads/images/808_mango_logo.jpg',
+      name: 'Samsonite',
+      image: 'https://www.samsonite.com/images/logo.jpg',
       products: [
         AirportProduct(
-            id: 7,
-            name: 'Deri Ceket',
-            price: 89.99,
-            image:
-                "https://static.zara.net/assets/public/d7f0/ad42/1acb43e8aa2b/5b11f83f8b5a/03046037800-e1/03046037800-e1.jpg?ts=1708505721107&w=824"),
+            id: 21,
+            name: 'Travel Luggage',
+            price: 299.99,
+            image: "https://example.com/image21.jpg"),
         AirportProduct(
-            id: 8,
-            name: 'Comfort Jeans',
+            id: 22,
+            name: 'Backpack',
+            price: 129.99,
+            image: "https://example.com/image22.jpg"),
+        AirportProduct(
+            id: 23,
+            name: 'Laptop Bag',
+            price: 99.99,
+            image: "https://example.com/image23.jpg"),
+        AirportProduct(
+            id: 24,
+            name: 'Briefcase',
+            price: 149.99,
+            image: "https://example.com/image24.jpg"),
+        AirportProduct(
+            id: 25,
+            name: 'Wallet',
+            price: 49.99,
+            image: "https://example.com/image25.jpg"),
+        AirportProduct(
+            id: 26,
+            name: 'Travel Pillow',
+            price: 29.99,
+            image: "https://example.com/image26.jpg"),
+        AirportProduct(
+            id: 27,
+            name: 'Luggage Tag',
+            price: 9.99,
+            image: "https://example.com/image27.jpg"),
+        AirportProduct(
+            id: 28,
+            name: 'Passport Holder',
+            price: 19.99,
+            image: "https://example.com/image28.jpg"),
+        AirportProduct(
+            id: 29,
+            name: 'Travel Adapter',
+            price: 24.99,
+            image: "https://example.com/image29.jpg"),
+        AirportProduct(
+            id: 30,
+            name: 'Umbrella',
+            price: 39.99,
+            image: "https://example.com/image30.jpg"),
+      ],
+    ),
+    AirportBrand(
+      name: 'D&R',
+      image: 'https://www.dr.com.tr/Images/dr-logo.png',
+      products: [
+        AirportProduct(
+            id: 31,
+            name: 'Book',
+            price: 19.99,
+            image: "https://example.com/image31.jpg"),
+        AirportProduct(
+            id: 32,
+            name: 'Music CD',
+            price: 29.99,
+            image: "https://example.com/image32.jpg"),
+        AirportProduct(
+            id: 33,
+            name: 'DVD',
+            price: 14.99,
+            image: "https://example.com/image33.jpg"),
+        AirportProduct(
+            id: 34,
+            name: 'Board Game',
+            price: 49.99,
+            image: "https://example.com/image34.jpg"),
+        AirportProduct(
+            id: 35,
+            name: 'Puzzle',
+            price: 24.99,
+            image: "https://example.com/image35.jpg"),
+        AirportProduct(
+            id: 36,
+            name: 'Stationery Set',
+            price: 19.99,
+            image: "https://example.com/image36.jpg"),
+        AirportProduct(
+            id: 37,
+            name: 'Headphones',
+            price: 39.99,
+            image: "https://example.com/image37.jpg"),
+        AirportProduct(
+            id: 38,
+            name: 'Bluetooth Speaker',
             price: 59.99,
-            image:
-                "https://static.zara.net/assets/public/24a5/cb12/ff524e9db278/59b8d3d570e3/08228029800-e1/08228029800-e1.jpg?ts=1704356987300"),
+            image: "https://example.com/image38.jpg"),
         AirportProduct(
-            id: 9,
-            name: 'Spor Ayakkabı',
-            price: 69.99,
-            image:
-                "https://static.zara.net/assets/public/625c/d5b7/25994d7fb139/18df72d028a2/13426330102-e2/13426330102-e2.jpg?ts=1699888335541&w=824"),
+            id: 39,
+            name: 'Notebook',
+            price: 9.99,
+            image: "https://example.com/image39.jpg"),
+        AirportProduct(
+            id: 40,
+            name: 'Pen Set',
+            price: 14.99,
+            image: "https://example.com/image40.jpg"),
+      ],
+    ),
+    AirportBrand(
+      name: 'Starbucks',
+      image:
+          'https://globalassets.starbucks.com/assets/3b5f516b6e6f484b8a36d7edaf6e00a8.jpg',
+      products: [
+        AirportProduct(
+            id: 41,
+            name: 'Coffee',
+            price: 4.99,
+            image: "https://example.com/image41.jpg"),
+        AirportProduct(
+            id: 42,
+            name: 'Latte',
+            price: 5.99,
+            image: "https://example.com/image42.jpg"),
+        AirportProduct(
+            id: 43,
+            name: 'Cappuccino',
+            price: 5.49,
+            image: "https://example.com/image43.jpg"),
+        AirportProduct(
+            id: 44,
+            name: 'Espresso',
+            price: 3.99,
+            image: "https://example.com/image44.jpg"),
+        AirportProduct(
+            id: 45,
+            name: 'Mocha',
+            price: 5.99,
+            image: "https://example.com/image45.jpg"),
+        AirportProduct(
+            id: 46,
+            name: 'Frappuccino',
+            price: 6.49,
+            image: "https://example.com/image46.jpg"),
+        AirportProduct(
+            id: 47,
+            name: 'Tea',
+            price: 3.49,
+            image: "https://example.com/image47.jpg"),
+        AirportProduct(
+            id: 48,
+            name: 'Muffin',
+            price: 2.99,
+            image: "https://example.com/image48.jpg"),
+        AirportProduct(
+            id: 49,
+            name: 'Cookie',
+            price: 1.99,
+            image: "https://example.com/image49.jpg"),
+        AirportProduct(
+            id: 50,
+            name: 'Sandwich',
+            price: 4.99,
+            image: "https://example.com/image50.jpg"),
+      ],
+    ),
+    AirportBrand(
+      name: 'Beymen',
+      image: 'https://www.beymen.com/images/logo.jpg',
+      products: [
+        AirportProduct(
+            id: 51,
+            name: 'Luxury Bag',
+            price: 999.99,
+            image: "https://example.com/image51.jpg"),
+        AirportProduct(
+            id: 52,
+            name: 'Designer Shoes',
+            price: 799.99,
+            image: "https://example.com/image52.jpg"),
+        AirportProduct(
+            id: 53,
+            name: 'Silk Scarf',
+            price: 199.99,
+            image: "https://example.com/image53.jpg"),
+        AirportProduct(
+            id: 54,
+            name: 'Leather Wallet',
+            price: 299.99,
+            image: "https://example.com/image54.jpg"),
+        AirportProduct(
+            id: 55,
+            name: 'Evening Dress',
+            price: 1299.99,
+            image: "https://example.com/image55.jpg"),
+        AirportProduct(
+            id: 56,
+            name: 'Suit',
+            price: 1499.99,
+            image: "https://example.com/image56.jpg"),
+        AirportProduct(
+            id: 57,
+            name: 'Sunglasses',
+            price: 299.99,
+            image: "https://example.com/image57.jpg"),
+        AirportProduct(
+            id: 58,
+            name: 'Perfume',
+            price: 199.99,
+            image: "https://example.com/image58.jpg"),
+        AirportProduct(
+            id: 59,
+            name: 'Watch',
+            price: 999.99,
+            image: "https://example.com/image59.jpg"),
+        AirportProduct(
+            id: 60,
+            name: 'Belt',
+            price: 149.99,
+            image: "https://example.com/image60.jpg"),
       ],
     ),
   ];

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -30,14 +31,92 @@ class _MapPageState extends State<MapPage> {
     )
   };
 
-  static Widget giveCenter(String mapPath) {
-    return Center(child: PinchZoom(maxScale: 2.5, child: CachedNetworkImage(imageUrl: mapPath)));
+  Widget buildZoomableImage(String mapPath) {
+    return PinchZoom(
+      image: CachedNetworkImage(imageUrl: mapPath),
+      zoomedBackgroundColor: ColorManager.instance.blue,
+      resetDuration: const Duration(milliseconds: 100),
+      maxScale: 2.5,
+    );
   }
-
-  List<Widget> bodies = [giveCenter("https://webcmsesb.tav.aero/uploads/5a13ca9ea79d053db4eaaa60/dynamic-fields/images/gidis-kati_2.jpg"), giveCenter("https://webcmsesb.tav.aero/uploads/5a13ca9ea79d053db4eaaa60/dynamic-fields/images/gelis-asma-kati_2.jpg"), giveCenter("https://webcmsesb.tav.aero/uploads/5a13ca9ea79d053db4eaaa60/dynamic-fields/images/gelis-kati_2.jpg")];
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> bodies = [
+      Column(
+        children: [
+          Expanded(
+              flex: 1,
+              child: buildZoomableImage(
+                  "https://webcmsesb.tav.aero/uploads/5a13ca9ea79d053db4eaaa60/dynamic-fields/images/gidis-kati_2.jpg")),
+          Expanded(
+            flex: 1,
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(40.1281, 32.9951),
+                zoom: 15,
+              ),
+              markers: {
+                Marker(
+                  markerId: MarkerId('esenboga'),
+                  position: LatLng(40.1281, 32.9951),
+                  infoWindow: InfoWindow(title: 'Ankara Esenboğa Havalimanı'),
+                ),
+              },
+            ),
+          ),
+        ],
+      ),
+      Column(
+        children: [
+          Expanded(
+              flex: 1,
+              child: buildZoomableImage(
+                  "https://webcmsesb.tav.aero/uploads/5a13ca9ea79d053db4eaaa60/dynamic-fields/images/gelis-asma-kati_2.jpg")),
+          Expanded(
+            flex: 1,
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(40.1281, 32.9951),
+                zoom: 15,
+              ),
+              markers: {
+                Marker(
+                  markerId: MarkerId('esenboga'),
+                  position: LatLng(40.1281, 32.9951),
+                  infoWindow: InfoWindow(title: 'Ankara Esenboğa Havalimanı'),
+                ),
+              },
+            ),
+          ),
+        ],
+      ),
+      Column(
+        children: [
+          Expanded(
+              flex: 1,
+              child: buildZoomableImage(
+                  "https://webcmsesb.tav.aero/uploads/5a13ca9ea79d053db4eaaa60/dynamic-fields/images/gelis-kati_2.jpg")),
+          Expanded(
+            flex: 1,
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(40.1281, 32.9951),
+                zoom: 15,
+              ),
+              markers: {
+                Marker(
+                  markerId: MarkerId('esenboga'),
+                  position: LatLng(40.1281, 32.9951),
+                  infoWindow: InfoWindow(title: 'Ankara Esenboğa Havalimanı'),
+                ),
+              },
+            ),
+          ),
+        ],
+      ),
+    ];
+
     return Scaffold(
       backgroundColor: ColorManager.instance.blue,
       body: bodies[theriGroupVakue],
@@ -46,7 +125,9 @@ class _MapPageState extends State<MapPage> {
         bottom: PreferredSize(
           preferredSize: Size(double.infinity, Utility.dynamicWidthPixel(45)),
           child: Padding(
-            padding: EdgeInsets.only(top: Utility.dynamicWidthPixel(5), bottom: Utility.dynamicWidthPixel(10)),
+            padding: EdgeInsets.only(
+                top: Utility.dynamicWidthPixel(5),
+                bottom: Utility.dynamicWidthPixel(10)),
             child: Row(
               children: [
                 SizedBox(

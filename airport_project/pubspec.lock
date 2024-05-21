@@ -569,10 +569,10 @@ packages:
     dependency: "direct main"
     description:
       name: pinch_zoom
-      sha256: "8e430a215db198099a708f334620e223cbea3fdc477b717d6535ab852994985e"
+      sha256: "444dc2ce93b210514c6f9dc66cdf5b998ad3dbfb0e0a025f78cd10e278f37f13"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "0.1.0"
   platform:
     dependency: transitive
     description:
