@@ -24,9 +24,9 @@ class _WalletPageState extends State<WalletPage> {
       init: WalletController(),
       builder: (c) {
         return Scaffold(
-          backgroundColor: ColorManager.instance.blue,
+          backgroundColor: ColorManager.instance.white,
           appBar: AppBar(
-            backgroundColor: ColorManager.instance.blue,
+            backgroundColor: ColorManager.instance.yellow,
             actions: [
               IconButton(
                 icon: Icon(Icons.refresh),
@@ -140,7 +140,7 @@ class _WalletPageState extends State<WalletPage> {
                                 obscureCardNumber: true,
                                 obscureCardCvv: true,
                                 isHolderNameVisible: true,
-                                cardBgColor: ColorManager.instance.blueDark,
+                                cardBgColor: ColorManager.instance.grayBorder,
                                 isSwipeGestureEnabled: true,
                                 onCreditCardWidgetChange:
                                     (CreditCardBrand creditCardBrand) {},
@@ -149,7 +149,7 @@ class _WalletPageState extends State<WalletPage> {
                                 padding: EdgeInsets.symmetric(
                                     vertical: Utility.dynamicWidthPixel(8)),
                                 child: Button(
-                                  color: ColorManager.instance.black,
+                                  color: ColorManager.instance.yellow,
                                   onTap: () async {
                                     await FirebaseFirestore.instance
                                         .collection('mycards')

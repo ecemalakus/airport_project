@@ -13,9 +13,9 @@ class DeleteAccountPage extends GetView<DeleteAccountController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.instance.blue,
+      backgroundColor: ColorManager.instance.white,
       appBar: AppBar(
-        backgroundColor: ColorManager.instance.blue,
+        backgroundColor: ColorManager.instance.yellow,
       ),
       body: GetBuilder<DeleteAccountController>(
           init: DeleteAccountController(),
@@ -32,19 +32,24 @@ class DeleteAccountPage extends GetView<DeleteAccountController> {
                       children: [
                         Text(
                           "Bilgilerinizi Girerek Hesabınızı Silebilirsiniz",
-                          style: TextStyle(fontSize: Utility.dynamicTextSize(18), fontFamily: "Medium"),
+                          style: TextStyle(
+                              fontSize: Utility.dynamicTextSize(18),
+                              fontFamily: "Medium"),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: Utility.dynamicWidthPixel(12)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: Utility.dynamicWidthPixel(12)),
                           child: TextFormFieldApp.instance.widget(
                             context: context,
                             labelText: "E-posta",
                             keyboardType: TextInputType.emailAddress,
                             controller: c.emailController,
-                            errorStyle: TextStyle(color: ColorManager.instance.red),
+                            errorStyle:
+                                TextStyle(color: ColorManager.instance.red),
                             leadingIcon: Icon(
                               Icons.mail,
-                              color: ColorManager.instance.darkGray.withOpacity(0.6),
+                              color: ColorManager.instance.darkGray
+                                  .withOpacity(0.6),
                             ),
                             validation: (val) {
                               if (val!.isEmpty) {
@@ -58,17 +63,20 @@ class DeleteAccountPage extends GetView<DeleteAccountController> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: Utility.dynamicWidthPixel(12)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: Utility.dynamicWidthPixel(12)),
                           child: TextFormFieldApp.instance.widget(
                             context: context,
                             obscureText: true,
                             labelText: "Şifre",
                             keyboardType: TextInputType.visiblePassword,
                             controller: c.passController,
-                            errorStyle: TextStyle(color: ColorManager.instance.red),
+                            errorStyle:
+                                TextStyle(color: ColorManager.instance.red),
                             leadingIcon: Icon(
                               Icons.lock,
-                              color: ColorManager.instance.darkGray.withOpacity(0.6),
+                              color: ColorManager.instance.darkGray
+                                  .withOpacity(0.6),
                             ),
                             validation: (val) {
                               if (val!.isEmpty) {
@@ -82,7 +90,7 @@ class DeleteAccountPage extends GetView<DeleteAccountController> {
                           ),
                         ),
                         Button(
-                          color: ColorManager.instance.black,
+                          color: ColorManager.instance.yellow,
                           onTap: () async {
                             if (c.key.currentState!.validate()) {
                               AirportProject().showGeneralDialog(context,
@@ -90,33 +98,44 @@ class DeleteAccountPage extends GetView<DeleteAccountController> {
                                     children: [
                                       Text(
                                         "Hesabınızı silmek istediğinize emin misiniz ?",
-                                        style: TextStyle(fontSize: Utility.dynamicTextSize(14), fontFamily: "Medium"),
+                                        style: TextStyle(
+                                            fontSize:
+                                                Utility.dynamicTextSize(14),
+                                            fontFamily: "Medium"),
                                         textAlign: TextAlign.center,
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Expanded(
                                               child: Button(
                                             color: ColorManager.instance.white,
-                                            borderColor: ColorManager.instance.black,
+                                            borderColor:
+                                                ColorManager.instance.black,
                                             onTap: () {
                                               Get.back();
                                             },
-                                            textColor: ColorManager.instance.black,
+                                            textColor:
+                                                ColorManager.instance.black,
                                             title: "Vazgeç",
                                           )),
                                           SizedBox(
-                                            width: Utility.dynamicWidthPixel(12),
+                                            width:
+                                                Utility.dynamicWidthPixel(12),
                                           ),
                                           Expanded(
                                               child: Button(
                                             color: ColorManager.instance.black,
                                             onTap: () async {
-                                              c.deleteUserAccount(email: c.emailController.text, password: c.passController.text);
+                                              c.deleteUserAccount(
+                                                  email: c.emailController.text,
+                                                  password:
+                                                      c.passController.text);
                                             },
                                             title: "Evet",
-                                            textColor: ColorManager.instance.white,
+                                            textColor:
+                                                ColorManager.instance.white,
                                           ))
                                         ],
                                       )
@@ -125,7 +144,7 @@ class DeleteAccountPage extends GetView<DeleteAccountController> {
                             }
                           },
                           title: "Hesabı Sil",
-                          textColor: ColorManager.instance.white,
+                          textColor: ColorManager.instance.yellow,
                         ),
                       ],
                     ),

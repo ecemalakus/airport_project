@@ -17,7 +17,8 @@ class RegisterPage extends GetView<RegisterController> {
         init: RegisterController(),
         builder: (c) {
           return Scaffold(
-            backgroundColor: ColorManager.instance.blue,
+            backgroundColor:
+                ColorManager.instance.darkblack, // Arka plan rengini siyah yap
             body: StreamBuilder(
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {
@@ -27,7 +28,8 @@ class RegisterPage extends GetView<RegisterController> {
                 }
                 return Center(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: Utility.dynamicWidthPixel(16)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Utility.dynamicWidthPixel(16)),
                     child: SafeArea(
                         child: SingleChildScrollView(
                       child: Form(
@@ -36,20 +38,29 @@ class RegisterPage extends GetView<RegisterController> {
                           children: [
                             Text(
                               "BİZE KATILIN",
-                              style: TextStyle(fontSize: Utility.dynamicTextSize(32), fontFamily: "Medium"),
+                              style: TextStyle(
+                                  fontSize: Utility.dynamicTextSize(32),
+                                  fontFamily: "Medium",
+                                  color: ColorManager.instance
+                                      .white), // Yazı rengini beyaz yap
                             ),
                             SizedBox(
                               height: Utility.dynamicWidthPixel(16),
                             ),
                             Text(
                               "Kişisel bilgilerinizi girin ve SkyBee ile yolculuğa başlayın",
-                              style: TextStyle(fontSize: Utility.dynamicTextSize(17), fontFamily: "Medium"),
+                              style: TextStyle(
+                                  fontSize: Utility.dynamicTextSize(17),
+                                  fontFamily: "Medium",
+                                  color: ColorManager.instance
+                                      .white), // Yazı rengini beyaz yap
                               textAlign: TextAlign.center,
                             ),
                             TextFormFieldApp.instance.widget(
                               context: context,
                               labelText: "Kullanıcı Adı",
-                              errorStyle: TextStyle(color: ColorManager.instance.red),
+                              errorStyle:
+                                  TextStyle(color: ColorManager.instance.red),
                               keyboardType: TextInputType.name,
                               controller: c.usernameController,
                               validation: (val) {
@@ -60,13 +71,15 @@ class RegisterPage extends GetView<RegisterController> {
                               },
                               leadingIcon: Icon(
                                 Icons.account_circle,
-                                color: ColorManager.instance.darkGray.withOpacity(0.6),
+                                color: ColorManager.instance.darkGray
+                                    .withOpacity(0.6),
                               ),
                             ),
                             TextFormFieldApp.instance.widget(
                               context: context,
                               labelText: "E-posta",
-                              errorStyle: TextStyle(color: ColorManager.instance.red),
+                              errorStyle:
+                                  TextStyle(color: ColorManager.instance.red),
                               keyboardType: TextInputType.name,
                               controller: c.emailController,
                               validation: (val) {
@@ -77,7 +90,8 @@ class RegisterPage extends GetView<RegisterController> {
                               },
                               leadingIcon: Icon(
                                 Icons.mail,
-                                color: ColorManager.instance.darkGray.withOpacity(0.6),
+                                color: ColorManager.instance.darkGray
+                                    .withOpacity(0.6),
                               ),
                             ),
                             TextFormFieldApp.instance.widget(
@@ -85,11 +99,13 @@ class RegisterPage extends GetView<RegisterController> {
                               labelText: "Şifre",
                               keyboardType: TextInputType.visiblePassword,
                               controller: c.passwordController,
-                              errorStyle: TextStyle(color: ColorManager.instance.red),
+                              errorStyle:
+                                  TextStyle(color: ColorManager.instance.red),
                               obscureText: c.showPasswordForRegister,
                               leadingIcon: Icon(
                                 Icons.lock,
-                                color: ColorManager.instance.darkGray.withOpacity(0.6),
+                                color: ColorManager.instance.darkGray
+                                    .withOpacity(0.6),
                               ),
                               validation: (val) {
                                 if (val!.isEmpty) {
@@ -102,11 +118,15 @@ class RegisterPage extends GetView<RegisterController> {
                               },
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  c.showPasswordForRegister == true ? Icons.visibility_off : Icons.visibility,
-                                  color: ColorManager.instance.darkGray.withOpacity(0.6),
+                                  c.showPasswordForRegister == true
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: ColorManager.instance.darkGray
+                                      .withOpacity(0.6),
                                 ),
                                 onPressed: () {
-                                  c.showPasswordForRegister = !c.showPasswordForRegister;
+                                  c.showPasswordForRegister =
+                                      !c.showPasswordForRegister;
                                   c.update();
                                 },
                               ),
@@ -115,9 +135,11 @@ class RegisterPage extends GetView<RegisterController> {
                               height: Utility.dynamicWidthPixel(16),
                             ),
                             Button(
-                              color: ColorManager.instance.black,
+                              color: ColorManager
+                                  .instance.yellow, // Buton rengini sarı yap
                               title: "ÜYE OL",
-                              textColor: ColorManager.instance.white.withOpacity(0.9),
+                              textColor:
+                                  ColorManager.instance.white.withOpacity(0.9),
                               onTap: () async {
                                 await c.register();
                               },
@@ -131,7 +153,7 @@ class RegisterPage extends GetView<RegisterController> {
                                 child: Text(
                                   "Üyeliğiniz var mı? Giriş yapın",
                                   style: TextStyle(
-                                    color: ColorManager.instance.darkGray,
+                                    color: ColorManager.instance.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
                                   ),

@@ -13,12 +13,13 @@ class MyTicketsPage extends GetView<MyTicketsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.instance.blue,
+      backgroundColor: ColorManager.instance.yellow,
       appBar: AppBar(
-        backgroundColor: ColorManager.instance.blue,
+        backgroundColor: ColorManager.instance.white,
         title: Text(
           "BİLETLERİM",
-          style: TextStyle(fontFamily: "Medium", fontSize: Utility.dynamicTextSize(17)),
+          style: TextStyle(
+              fontFamily: "Medium", fontSize: Utility.dynamicTextSize(17)),
         ),
         centerTitle: true,
       ),
@@ -41,7 +42,8 @@ class MyTicketsPage extends GetView<MyTicketsController> {
                               width: Utility.dynamicWidthPixel(250),
                               height: Utility.dynamicWidthPixel(200),
                               isCornerRounded: true,
-                              padding: EdgeInsets.all(Utility.dynamicWidthPixel(20)),
+                              padding:
+                                  EdgeInsets.all(Utility.dynamicWidthPixel(20)),
                               child: const TicketData(),
                             );
                           }),
@@ -53,7 +55,15 @@ class MyTicketsPage extends GetView<MyTicketsController> {
                       controller: c.pageController,
                       count: 5,
                       axisDirection: Axis.horizontal,
-                      effect: SlideEffect(spacing: 5.0, radius: 4.0, dotWidth: 12.0, dotHeight: 12.0, paintStyle: PaintingStyle.stroke, strokeWidth: 1, dotColor: ColorManager.instance.blueDark, activeDotColor: ColorManager.instance.black),
+                      effect: SlideEffect(
+                          spacing: 5.0,
+                          radius: 4.0,
+                          dotWidth: 12.0,
+                          dotHeight: 12.0,
+                          paintStyle: PaintingStyle.stroke,
+                          strokeWidth: 1,
+                          dotColor: ColorManager.instance.blueDark,
+                          activeDotColor: ColorManager.instance.black),
                     )
                   ],
                 ),

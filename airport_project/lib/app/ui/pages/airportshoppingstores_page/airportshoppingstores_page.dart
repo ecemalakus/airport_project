@@ -8,7 +8,8 @@ import '../../../controllers/airportshoppingstores_controller.dart';
 import '../../global_widgets/textformfield.dart';
 import 'airportshoppingstores_detail_page.dart';
 
-class AirportShoppingStoresPage extends GetView<AirportShoppingStoresController> {
+class AirportShoppingStoresPage
+    extends GetView<AirportShoppingStoresController> {
   const AirportShoppingStoresPage({super.key});
 
   @override
@@ -17,15 +18,17 @@ class AirportShoppingStoresPage extends GetView<AirportShoppingStoresController>
         init: Get.put(AirportShoppingStoresController(), permanent: true),
         builder: (c) {
           return Scaffold(
-            backgroundColor: ColorManager.instance.blue,
+            backgroundColor: ColorManager.instance.white,
             appBar: AppBar(
-              backgroundColor: ColorManager.instance.blue,
+              backgroundColor: ColorManager.instance.yellow, //değişti yukarıda
               actions: [
                 Padding(
-                  padding: EdgeInsets.only(right: Utility.dynamicWidthPixel(12)),
+                  padding:
+                      EdgeInsets.only(right: Utility.dynamicWidthPixel(12)),
                   child: InkWell(
                     onTap: () {
-                      pushNewScreen(context, screen: const BasketPage(), withNavBar: true);
+                      pushNewScreen(context,
+                          screen: const BasketPage(), withNavBar: true);
                     },
                     child: Icon(
                       Icons.shopping_basket,
@@ -62,7 +65,8 @@ class AirportShoppingStoresPage extends GetView<AirportShoppingStoresController>
                       child: GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 10.0,
                           mainAxisSpacing: 10.0,
@@ -70,10 +74,16 @@ class AirportShoppingStoresPage extends GetView<AirportShoppingStoresController>
                         itemCount: c.airportBrands.length,
                         itemBuilder: (context, index) {
                           final brand = c.airportBrands[index];
-                          if (c.searchController.text.isEmpty || brand.name.toLowerCase().contains(c.searchController.text.toLowerCase())) {
+                          if (c.searchController.text.isEmpty ||
+                              brand.name.toLowerCase().contains(
+                                  c.searchController.text.toLowerCase())) {
                             return GestureDetector(
                               onTap: () {
-                                pushNewScreen(context, screen: AirportShoppingStoresDetailPage(brandName: brand.name, products: brand.products), withNavBar: true);
+                                pushNewScreen(context,
+                                    screen: AirportShoppingStoresDetailPage(
+                                        brandName: brand.name,
+                                        products: brand.products),
+                                    withNavBar: true);
                               },
                               child: Container(
                                 decoration: BoxDecoration(

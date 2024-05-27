@@ -20,7 +20,7 @@ class BasketPage extends GetView<AirportShoppingStoresController> {
       builder: (c) {
         return Scaffold(
             bottomSheet: Container(
-              color: ColorManager.instance.blueDark,
+              color: ColorManager.instance.yellow,
               height: Utility.dynamicWidthPixel(100),
               child: Column(
                 children: [
@@ -53,7 +53,8 @@ class BasketPage extends GetView<AirportShoppingStoresController> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: Utility.dynamicWidthPixel(50)),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Utility.dynamicWidthPixel(50)),
                     child: Button(
                       color: ColorManager.instance.white,
                       onTap: () {
@@ -78,7 +79,8 @@ class BasketPage extends GetView<AirportShoppingStoresController> {
                                         },
                                         color: ColorManager.instance.white,
                                         textColor: ColorManager.instance.black,
-                                        borderColor: ColorManager.instance.black,
+                                        borderColor:
+                                            ColorManager.instance.black,
                                         title: "Vazgeç",
                                       ),
                                     ),
@@ -92,7 +94,8 @@ class BasketPage extends GetView<AirportShoppingStoresController> {
                                         },
                                         color: ColorManager.instance.black,
                                         textColor: ColorManager.instance.white,
-                                        borderColor: ColorManager.instance.black,
+                                        borderColor:
+                                            ColorManager.instance.black,
                                         title: "Evet",
                                       ),
                                     ),
@@ -108,13 +111,14 @@ class BasketPage extends GetView<AirportShoppingStoresController> {
                 ],
               ),
             ),
-            backgroundColor: ColorManager.instance.blue,
+            backgroundColor: ColorManager.instance.white,
             appBar: AppBar(
-              backgroundColor: ColorManager.instance.blue,
+              backgroundColor: ColorManager.instance.white,
               centerTitle: true,
               actions: [
                 Padding(
-                  padding: EdgeInsets.only(right: Utility.dynamicWidthPixel(16)),
+                  padding:
+                      EdgeInsets.only(right: Utility.dynamicWidthPixel(16)),
                   child: InkWell(
                     onTap: () {
                       AirportProject().showGeneralDialog(context,
@@ -181,7 +185,10 @@ class BasketPage extends GetView<AirportShoppingStoresController> {
               ),
             ),
             body: Padding(
-              padding: EdgeInsets.only(left: Utility.dynamicWidthPixel(50), right: Utility.dynamicWidthPixel(50), bottom: Utility.dynamicWidthPixel(110)),
+              padding: EdgeInsets.only(
+                  left: Utility.dynamicWidthPixel(50),
+                  right: Utility.dynamicWidthPixel(50),
+                  bottom: Utility.dynamicWidthPixel(110)),
               child: ListView.separated(
                 separatorBuilder: (context, index) {
                   return const Divider();
@@ -189,7 +196,10 @@ class BasketPage extends GetView<AirportShoppingStoresController> {
                 itemCount: c.shoppingCart.length,
                 itemBuilder: (context, index) {
                   return Container(
-                    decoration: BoxDecoration(color: ColorManager.instance.blueDark, borderRadius: BorderRadius.circular(10), border: Border.all(color: ColorManager.instance.black)),
+                    decoration: BoxDecoration(
+                        color: ColorManager.instance.yellow,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: ColorManager.instance.black)),
                     height: Utility.dynamicWidthPixel(350),
                     child: Column(
                       children: [
@@ -203,7 +213,8 @@ class BasketPage extends GetView<AirportShoppingStoresController> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: Utility.dynamicWidthPixel(10)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: Utility.dynamicWidthPixel(10)),
                           child: Column(
                             children: [
                               Text(

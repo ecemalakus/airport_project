@@ -34,7 +34,7 @@ class _MapPageState extends State<MapPage> {
   Widget buildZoomableImage(String mapPath) {
     return PinchZoom(
       image: CachedNetworkImage(imageUrl: mapPath),
-      zoomedBackgroundColor: ColorManager.instance.blue,
+      zoomedBackgroundColor: ColorManager.instance.white,
       resetDuration: const Duration(milliseconds: 100),
       maxScale: 2.5,
     );
@@ -118,10 +118,10 @@ class _MapPageState extends State<MapPage> {
     ];
 
     return Scaffold(
-      backgroundColor: ColorManager.instance.blue,
+      backgroundColor: ColorManager.instance.white,
       body: bodies[theriGroupVakue],
       appBar: AppBar(
-        backgroundColor: ColorManager.instance.blue,
+        backgroundColor: ColorManager.instance.white,
         bottom: PreferredSize(
           preferredSize: Size(double.infinity, Utility.dynamicWidthPixel(45)),
           child: Padding(
@@ -135,7 +135,7 @@ class _MapPageState extends State<MapPage> {
                 ),
                 Expanded(
                   child: CupertinoSegmentedControl(
-                    selectedColor: ColorManager.instance.blueDark,
+                    selectedColor: ColorManager.instance.yellow,
                     unselectedColor: ColorManager.instance.greyDark,
                     borderColor: ColorManager.instance.darkGray,
                     groupValue: theriGroupVakue,

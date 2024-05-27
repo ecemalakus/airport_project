@@ -10,7 +10,8 @@ import '../ui/pages/wallet_page/wallet_page.dart';
 import 'profiledetail_controller.dart';
 
 class RootController extends GetxController {
-  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
+  final PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
 
   PersistentTabController get controller => _controller;
 

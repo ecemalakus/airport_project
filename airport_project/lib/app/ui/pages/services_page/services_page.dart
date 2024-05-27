@@ -17,9 +17,9 @@ class ServicesPage extends GetView<ServicesController> {
       builder: (c) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: ColorManager.instance.blue,
+            backgroundColor: ColorManager.instance.yellow,
           ),
-          backgroundColor: ColorManager.instance.blue,
+          backgroundColor: ColorManager.instance.yellow,
           body: Column(
             children: [
               Padding(
@@ -49,7 +49,8 @@ class ServicesPage extends GetView<ServicesController> {
                     child: GridView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10.0,
                         mainAxisSpacing: 10.0,
@@ -83,7 +84,8 @@ class ServicesPage extends GetView<ServicesController> {
                                     ),
                                     textAlign: TextAlign.center,
                                   ), // İsim
-                                  Icon(c.getIconDataFromString(service.iconData)),
+                                  Icon(c
+                                      .getIconDataFromString(service.iconData)),
                                 ],
                               ),
                             ),

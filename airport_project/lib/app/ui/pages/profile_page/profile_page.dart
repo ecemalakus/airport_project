@@ -1,4 +1,3 @@
-
 import 'package:airport_project/app/ui/pages/discover_page/discover_page.dart';
 import 'package:airport_project/app/ui/pages/forgotpassword_page/forgotpassword_page.dart';
 import 'package:airport_project/core/init/theme/color_manager.dart';
@@ -19,24 +18,28 @@ class ProfilePage extends GetView<ProfileController> {
         init: ProfileController(),
         builder: (prof) {
           return Scaffold(
-            backgroundColor: ColorManager.instance.blue,
+            backgroundColor: ColorManager.instance.yellow,
             appBar: AppBar(
-              backgroundColor: ColorManager.instance.blue,
+              backgroundColor: ColorManager.instance.yellow,
             ),
             body: Center(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: Utility.dynamicWidthPixel(16)),
+                padding: EdgeInsets.symmetric(
+                    horizontal: Utility.dynamicWidthPixel(16)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: Utility.dynamicWidthPixel(16)),
+                      padding:
+                          EdgeInsets.only(left: Utility.dynamicWidthPixel(16)),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "AYARLAR",
-                          style: TextStyle(fontSize: Utility.dynamicTextSize(32), fontFamily: "Medium"),
+                          style: TextStyle(
+                              fontSize: Utility.dynamicTextSize(32),
+                              fontFamily: "Medium"),
                         ),
                       ),
                     ),
@@ -45,7 +48,9 @@ class ProfilePage extends GetView<ProfileController> {
                     ),
                     InkWell(
                       onTap: () {
-                        pushNewScreen(context, screen: const ProfileDetailPage(), withNavBar: true);
+                        pushNewScreen(context,
+                            screen: const ProfileDetailPage(),
+                            withNavBar: true);
                       },
                       child: Container(
                         width: Get.width,
@@ -62,7 +67,9 @@ class ProfilePage extends GetView<ProfileController> {
                           children: [
                             Text(
                               "Hesap Bilgileri",
-                              style: TextStyle(fontSize: Utility.dynamicTextSize(19), fontFamily: "Medium"),
+                              style: TextStyle(
+                                  fontSize: Utility.dynamicTextSize(19),
+                                  fontFamily: "Medium"),
                             ),
                             SizedBox(
                               width: Utility.dynamicWidthPixel(16),
@@ -80,7 +87,9 @@ class ProfilePage extends GetView<ProfileController> {
                     ),
                     InkWell(
                       onTap: () {
-                        pushNewScreen(context, screen: const ForgotPasswordPage(), withNavBar: true);
+                        pushNewScreen(context,
+                            screen: const ForgotPasswordPage(),
+                            withNavBar: true);
                       },
                       child: Container(
                         width: Get.width,
@@ -97,7 +106,9 @@ class ProfilePage extends GetView<ProfileController> {
                           children: [
                             Text(
                               "Profil Ayarları",
-                              style: TextStyle(fontSize: Utility.dynamicTextSize(19), fontFamily: "Medium"),
+                              style: TextStyle(
+                                  fontSize: Utility.dynamicTextSize(19),
+                                  fontFamily: "Medium"),
                             ),
                             SizedBox(
                               width: Utility.dynamicWidthPixel(16),
@@ -115,7 +126,9 @@ class ProfilePage extends GetView<ProfileController> {
                     ),
                     InkWell(
                       onTap: () {
-                        pushNewScreen(context, screen: const DeleteAccountPage(), withNavBar: true);
+                        pushNewScreen(context,
+                            screen: const DeleteAccountPage(),
+                            withNavBar: true);
                       },
                       child: Container(
                         width: Get.width,
@@ -132,7 +145,9 @@ class ProfilePage extends GetView<ProfileController> {
                           children: [
                             Text(
                               "Hesabı Sil",
-                              style: TextStyle(fontSize: Utility.dynamicTextSize(19), fontFamily: "Medium"),
+                              style: TextStyle(
+                                  fontSize: Utility.dynamicTextSize(19),
+                                  fontFamily: "Medium"),
                             ),
                             SizedBox(
                               width: Utility.dynamicWidthPixel(16),
@@ -152,7 +167,9 @@ class ProfilePage extends GetView<ProfileController> {
                       alignment: Alignment.centerRight,
                       child: InkWell(
                           onTap: () {
-                            pushNewScreen(context, screen: const DiscoverInfoPage(), withNavBar: true);
+                            pushNewScreen(context,
+                                screen: const DiscoverInfoPage(),
+                                withNavBar: true);
                           },
                           child: Icon(
                             Icons.info_outline,

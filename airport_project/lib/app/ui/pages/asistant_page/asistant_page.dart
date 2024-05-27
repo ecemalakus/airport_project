@@ -26,7 +26,8 @@ class _AsistantPageState extends State<AsistantPage> {
 
   @override
   void initState() {
-    _model = GenerativeModel(model: "gemini-pro", apiKey: "AIzaSyBsbQlbN8Gl5iR9DmNCKFvHdvBIHYi8Mv0");
+    _model = GenerativeModel(
+        model: "gemini-pro", apiKey: "AIzaSyBsbQlbN8Gl5iR9DmNCKFvHdvBIHYi8Mv0");
     _chat = _model.startChat();
     super.initState();
   }
@@ -38,7 +39,7 @@ class _AsistantPageState extends State<AsistantPage> {
         builder: (c) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: ColorManager.instance.blue,
+              backgroundColor: ColorManager.instance.yellow,
               centerTitle: true,
               title: Text(
                 "Asistan",
@@ -49,7 +50,7 @@ class _AsistantPageState extends State<AsistantPage> {
                 ),
               ),
             ),
-            backgroundColor: ColorManager.instance.blue,
+            backgroundColor: ColorManager.instance.white,
             body: Padding(
               padding: EdgeInsets.all(Utility.dynamicWidthPixel(8)),
               child: Column(
@@ -61,7 +62,10 @@ class _AsistantPageState extends State<AsistantPage> {
                     controller: _scrollController,
                     itemBuilder: (context, idx) {
                       final content = _chat.history.toList()[idx];
-                      final text = content.parts.whereType<TextPart>().map<String>((e) => e.text).join('');
+                      final text = content.parts
+                          .whereType<TextPart>()
+                          .map<String>((e) => e.text)
+                          .join('');
                       return MessageWidget(
                         text: text,
                         isFromUser: content.role == 'user',
@@ -163,13 +167,16 @@ class MessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+      mainAxisAlignment:
+          isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
         Flexible(
           child: Container(
             constraints: const BoxConstraints(maxWidth: 600),
             decoration: BoxDecoration(
-              color: isFromUser ? ColorManager.instance.white : ColorManager.instance.blueSoft,
+              color: isFromUser
+                  ? ColorManager.instance.white
+                  : ColorManager.instance.yellow,
               borderRadius: BorderRadius.circular(18),
             ),
             padding: const EdgeInsets.symmetric(

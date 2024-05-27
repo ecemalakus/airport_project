@@ -15,9 +15,9 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.instance.blue,
+      backgroundColor: ColorManager.instance.white,
       appBar: AppBar(
-        backgroundColor: ColorManager.instance.blue,
+        backgroundColor: ColorManager.instance.yellow,
       ),
       body: GetBuilder<LoginController>(
           init: LoginController(),
@@ -31,10 +31,13 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                   children: [
                     Text(
                       "E-posta hesabınızı girerek, şifrenizi sıfırlayabilirsiniz",
-                      style: TextStyle(fontSize: Utility.dynamicTextSize(18), fontFamily: "Medium"),
+                      style: TextStyle(
+                          fontSize: Utility.dynamicTextSize(18),
+                          fontFamily: "Medium"),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: Utility.dynamicWidthPixel(24)),
+                      padding: EdgeInsets.symmetric(
+                          vertical: Utility.dynamicWidthPixel(24)),
                       child: TextFormFieldApp.instance.widget(
                         context: context,
                         labelText: "E-posta",
@@ -43,7 +46,8 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                         errorStyle: TextStyle(color: ColorManager.instance.red),
                         leadingIcon: Icon(
                           Icons.mail,
-                          color: ColorManager.instance.darkGray.withOpacity(0.6),
+                          color:
+                              ColorManager.instance.darkGray.withOpacity(0.6),
                         ),
                         validation: (val) {
                           if (val!.isEmpty) {
@@ -57,17 +61,21 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                       ),
                     ),
                     Button(
-                      color: ColorManager.instance.black,
+                      color: ColorManager.instance.yellow,
                       onTap: () async {
                         try {
-                          FirebaseAuth.instance.sendPasswordResetEmail(email: login.resetPasswordController.text.trim());
+                          FirebaseAuth.instance.sendPasswordResetEmail(
+                              email: login.resetPasswordController.text.trim());
                           Get.closeAllSnackbars();
-                          Get.snackbar("Başarılı", "Sıfırlama İsteği Gönderildi");
+                          Get.snackbar(
+                              "Başarılı", "Sıfırlama İsteği Gönderildi");
                         } on FirebaseAuthException catch (e) {
                           Get.closeAllSnackbars();
                           final translator = GoogleTranslator();
-                          Translation translation = await translator.translate(e.message ?? "", to: 'tr');
-                          Get.snackbar("Error", translation.text, backgroundColor: Colors.white);
+                          Translation translation = await translator
+                              .translate(e.message ?? "", to: 'tr');
+                          Get.snackbar("Error", translation.text,
+                              backgroundColor: Colors.white);
                         }
                       },
                       title: "ŞİFREMİ SIFIRLA",

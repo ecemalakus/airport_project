@@ -8,17 +8,19 @@ import '../../../../core/init/theme/color_manager.dart';
 import '../../../controllers/airportshoppingstores_controller.dart';
 import 'model/airport_shopping_stores_model.dart';
 
-class AirportShoppingStoresDetailPage extends GetView<AirportShoppingStoresController> {
+class AirportShoppingStoresDetailPage
+    extends GetView<AirportShoppingStoresController> {
   final String brandName;
   final List<AirportProduct> products;
-  const AirportShoppingStoresDetailPage({super.key, required this.brandName, required this.products});
+  const AirportShoppingStoresDetailPage(
+      {super.key, required this.brandName, required this.products});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AirportShoppingStoresController>(
       builder: (c) {
         return Scaffold(
-          backgroundColor: ColorManager.instance.blue,
+          backgroundColor: ColorManager.instance.white,
           appBar: AppBar(
             title: Text(
               brandName,
@@ -29,7 +31,7 @@ class AirportShoppingStoresDetailPage extends GetView<AirportShoppingStoresContr
               ),
             ),
             centerTitle: true,
-            backgroundColor: ColorManager.instance.blue,
+            backgroundColor: ColorManager.instance.white,
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -52,7 +54,8 @@ class AirportShoppingStoresDetailPage extends GetView<AirportShoppingStoresContr
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(top: Utility.dynamicWidthPixel(10)),
+                          padding: EdgeInsets.only(
+                              top: Utility.dynamicWidthPixel(10)),
                           child: Column(
                             children: [
                               Text(

@@ -21,9 +21,9 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
         init: AddNewCardController(),
         builder: (c) {
           return Scaffold(
-            backgroundColor: ColorManager.instance.blue,
+            backgroundColor: ColorManager.instance.white,
             appBar: AppBar(
-              backgroundColor: ColorManager.instance.blue,
+              backgroundColor: ColorManager.instance.yellow,
               title: Text(
                 'Yeni Kart Ekle',
                 style: TextStyle(

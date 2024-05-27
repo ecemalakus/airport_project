@@ -13,9 +13,9 @@ class ProfileDetailPage extends GetView<ProfileDetailController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.instance.blue,
+      backgroundColor: ColorManager.instance.white,
       appBar: AppBar(
-        backgroundColor: ColorManager.instance.blue,
+        backgroundColor: ColorManager.instance.yellow,
       ),
       body: SafeArea(
         child: Center(
@@ -68,18 +68,22 @@ class ProfileDetailPage extends GetView<ProfileDetailController> {
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide(
                               width: 1.5,
-                              color: ColorManager.instance.white,
+                              color: ColorManager.instance.yellow, //
                             ),
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           hintStyle: TextStyle(
                             fontSize: 15,
-                            color: ColorManager.instance.darkGray.withOpacity(0.6),
+                            color:
+                                ColorManager.instance.darkGray.withOpacity(0.6),
                           ),
                         ),
-                        style: TextStyle(fontSize: 16, color: ColorManager.instance.black),
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: ColorManager.instance.darkGray),
                         context: context,
-                         controller: c.usernameController..text = c.userSnapshot?.data()?["username"] ?? "",
+                        controller: c.usernameController
+                          ..text = c.userSnapshot?.data()?["username"] ?? "",
                         labelText: "Kullanıcı Adı",
                         maxLines: 1,
                         readOnly: true,
@@ -94,7 +98,8 @@ class ProfileDetailPage extends GetView<ProfileDetailController> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 30),
                       child: TextFormFieldApp.instance.widget(
                         decoration: InputDecoration(
                           filled: true,
@@ -131,18 +136,22 @@ class ProfileDetailPage extends GetView<ProfileDetailController> {
                             borderRadius: BorderRadius.circular(8),
                             borderSide: BorderSide(
                               width: 1.5,
-                              color: ColorManager.instance.white,
+                              color: ColorManager.instance.yellow, //
                             ),
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.auto,
                           hintStyle: TextStyle(
                             fontSize: 15,
-                            color: ColorManager.instance.darkGray.withOpacity(0.6),
+                            color:
+                                ColorManager.instance.darkGray.withOpacity(0.6),
                           ),
                         ),
-                        style: TextStyle(fontSize: 16, color: ColorManager.instance.darkGray),
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: ColorManager.instance.darkGray),
                         context: context,
-                         controller: c.emailContoller..text = c.userSnapshot?.data()?["email"] ?? "",
+                        controller: c.emailContoller
+                          ..text = c.userSnapshot?.data()?["email"] ?? "",
                         labelText: "E-Posta",
                         maxLines: 1,
                         readOnly: true,
@@ -157,9 +166,10 @@ class ProfileDetailPage extends GetView<ProfileDetailController> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: Utility.dynamicWidthPixel(30)),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: Utility.dynamicWidthPixel(30)),
                       child: Button(
-                        color: ColorManager.instance.black,
+                        color: ColorManager.instance.yellow,
                         onTap: () async {
                           await FirebaseAuth.instance.signOut();
                         },
